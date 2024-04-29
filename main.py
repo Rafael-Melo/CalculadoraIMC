@@ -27,9 +27,70 @@ def main(page:ft.Page):
         ],
     )
 
+    altura = ft.TextField(label="Altura", hint_text="Por favor insira a sua altura")
+    peso = ft.TextField(label="Peso", hint_text="Por favor insira o seu peso")
+    genero = ft.Dropdown(
+        label="Genero",
+        hint_text="Escolha o seu genero",
+        options=[
+            ft.dropdown.Option("Masculino"),
+            ft.dropdown.Option("Feminino")
+        ]
+    )
+
+    # Botão calcular IMC
+    b_calcular = ft.ElevatedButton(text="Calcular IMC")
+
+    # Exibir o IMC e resultado
+    IMC = ft.Text("Seu IMC é ...", size=30)
+    detalhes = ft.Text("Insira seus dados", size=20)
+    img_capa = ft.Image(
+        src=f"logo.png"
+    )
 
 
-    page.add()
+    # Layout da pagina
+    layout = ft.ResponsiveRow(
+        [
+            ft.Container(
+                img_capa,
+                padding=5,
+                col={"sm":4, "md":4, "xl":1},
+                alignment=ft.alignment.center,
+            ),
+            ft.Container(
+                altura,
+                padding=5,
+                bgcolor=ft.colors.WHITE,
+                col={"sm":12, "md":3, "xl":3},
+            ),
+            ft.Container(
+                peso,
+                padding=5,
+                bgcolor=ft.colors.WHITE,
+                col={"sm":12, "md":3, "xl":3},
+            ),
+            ft.Container(
+                genero,
+                padding=5,
+                bgcolor=ft.colors.WHITE,
+                col={"sm":12, "md":3, "xl":3},
+            ),
+            ft.Container(
+                b_calcular,
+                padding=5,
+                bgcolor=ft.colors.WHITE,
+                col={"sm":12, "md":3, "xl":3},
+            ),
+            ft.Container(
+                padding=5,
+                bgcolor=ft.colors.WHITE,
+                col={"sm":12, "md":3, "xl":3},
+            ),
+        ]
+    )
+
+    page.add(layout)
 
     page.update()
 
