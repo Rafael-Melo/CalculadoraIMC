@@ -45,7 +45,28 @@ def main(page:ft.Page):
     IMC = ft.Text("Seu IMC é ...", size=30)
     detalhes = ft.Text("Insira seus dados", size=20)
     img_capa = ft.Image(
-        src=f"logo.png"
+        src=f"logo.png",
+        width=100,
+        height=100,
+        fit=ft.ImageFit.CONTAIN,
+    )
+    info_app_resultado = ft.Column(
+        controls=[
+            IMC,
+            detalhes,
+        ]
+    )
+    img_resultado = ft.Image(
+        src=f"logo.png",
+        width=100,
+        height=100,
+        fit=ft.ImageFit.CONTAIN,
+    )
+    info = ft.Row(
+        controls=[
+            info_app_resultado,
+            img_resultado,
+        ]
     )
 
 
@@ -53,7 +74,7 @@ def main(page:ft.Page):
     layout = ft.ResponsiveRow(
         [
             ft.Container(
-                img_capa,
+                info,
                 padding=5,
                 col={"sm":4, "md":4, "xl":1},
                 alignment=ft.alignment.center,
@@ -61,25 +82,25 @@ def main(page:ft.Page):
             ft.Container(
                 altura,
                 padding=5,
-                bgcolor=ft.colors.WHITE,
+                # bgcolor=ft.colors.WHITE,
                 col={"sm":12, "md":3, "xl":3},
             ),
             ft.Container(
                 peso,
                 padding=5,
-                bgcolor=ft.colors.WHITE,
+                # bgcolor=ft.colors.WHITE,
                 col={"sm":12, "md":3, "xl":3},
             ),
             ft.Container(
                 genero,
                 padding=5,
-                bgcolor=ft.colors.WHITE,
+                # bgcolor=ft.colors.WHITE,
                 col={"sm":12, "md":3, "xl":3},
             ),
             ft.Container(
                 b_calcular,
                 padding=5,
-                bgcolor=ft.colors.WHITE,
+                # bgcolor=ft.colors.WHITE,
                 col={"sm":12, "md":3, "xl":3},
             ),
             ft.Container(
