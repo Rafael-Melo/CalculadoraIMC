@@ -18,6 +18,59 @@ def main(page:ft.Page):
         page.update()
 
 
+    def calcular(e):
+        if peso.value=="" or altura.value=="" or genero.value=="":
+            page.banner.open = True
+            page.update()
+        else:
+            valor_peso = float(peso.value)
+            valor_altura = float(altura.value)
+            # Calcular o IMC
+            imc = valor_peso / (valor_altura * valor_altura)
+            imc = float(f"{imc:.2f}")
+            # Exibir o valor do IMC
+            IMC.value = f"Seu IMC é {imc}"
+            if genero.value == "Feminino":
+                if imc < 18.5:
+                    img_resultado.src = f"w_slim.png"
+                    detalhes.value = "Abaixo do peso"
+                elif 18.5 <= imc < 24.9:
+                    img_resultado.src = f"w_normal.png"
+                    detalhes.value = "Peso saudável"
+                elif 25 <= imc < 29.9:
+                    img_resultado.src = f"w_fat.png"
+                    detalhes.value = "Sobrepeso ou pré obeso"
+                elif 30 <= imc < 34.9:
+                    img_resultado.src = f"w_fat.png"
+                    detalhes.value = "Obeso"
+                else:
+                    img_resultado.src = f"w_fat.png"
+                    detalhes.value = "Severamente obeso"
+            else:
+                if imc < 18.5:
+                    img_resultado.src = f"m_slim.png"
+                    detalhes.value = "Abaixo do peso"
+                elif 18.5 <= imc < 24.9:
+                    img_resultado.src = f"m_normal.png"
+                    detalhes.value = "Peso saudável"
+                elif 25 <= imc < 29.9:
+                    img_resultado.src = f"m_fat.png"
+                    detalhes.value = "Sobrepeso ou pré obeso"
+                elif 30 <= imc < 34.9:
+                    img_resultado.src = f"m_fat.png"
+                    detalhes.value = "Obeso"
+                else:
+                    img_resultado.src = f"m_fat.png"
+                    detalhes.value = "Severamente obeso"
+        # limpar os campos
+        peso.value = ""
+        altura.value = ""
+        genero.value = ""
+        # Atualizar a página
+        page.update()
+
+    
+    # Configurando a página
     page.banner = ft.Banner(
         bgcolor=ft.colors.SURFACE_VARIANT,
         leading=ft.Icon(ft.icons.WARNING_AMBER_OUTLINED, color=ft.colors.RED, size=40),
@@ -39,7 +92,7 @@ def main(page:ft.Page):
     )
 
     # Botão calcular IMC
-    b_calcular = ft.ElevatedButton(text="Calcular IMC")
+    b_calcular = ft.ElevatedButton(text="Calcular IMC", on_click=calcular)
 
     # Exibir o IMC e resultado
     IMC = ft.Text("Seu IMC é ...", size=30)
@@ -68,7 +121,6 @@ def main(page:ft.Page):
             img_resultado,
         ]
     )
-
 
     # Layout da pagina
     layout = ft.ResponsiveRow(
